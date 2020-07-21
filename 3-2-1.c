@@ -43,4 +43,26 @@ int main( int argc, const char *argv[]){
 
     return 0;
 }
+// 在线处理方式，结果未保存，直接输出
+// int main( int argc, const char *argv[]){
 
+//     bool Space = true;
+//     bool flag = true;
+//     int C,E;
+//     while( 1 ){
+//         scanf( "%d %d", &C, &E );
+//         if( E == 0 ) break; /* 当读取到系数为 0 时，结束循环不作处理 */
+//         flag = false; /* 输入不只有 常数项 或 零多项式 */
+//         C = C * E;
+//         E -= 1;
+//         if( Space ){
+//             Space = false;
+//             printf( "%d %d", C, E );
+//         }else printf( " %d %d", C, E );
+//     }
+//     if( flag ) printf( "0 0" );
+
+
+
+//     return 0;
+// }
