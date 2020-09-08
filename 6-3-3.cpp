@@ -1,4 +1,5 @@
 //最后一个测试点未通过
+//最后一个测试点未通过
 //应该是超时了
 #include <iostream>
 #include <vector>
@@ -57,19 +58,19 @@ int main( int argc, const char *argv[] ){
     if( AnsLength == AnsTime ){
         cout << "Time = " << Result.Time << "; Distance = " << Result.Length << ": " << S;
         while( !AnsTime.empty() ){
-            cout << " => " << AnsTime.top();
+            printf( " => %d", AnsTime.top());
             AnsTime.pop();
         }
     }else{
         cout << "Time = " << Result.Time << ": " << S;
         while( !AnsTime.empty() ){
-            cout << " => " << AnsTime.top();
+            printf( " => %d", AnsTime.top());
             AnsTime.pop();
         }
         cout << endl;  
         cout << "Distance = " << Result.Length << ": " << S;    
         while( !AnsLength.empty() ){
-            cout << " => " << AnsLength.top();
+            printf( " => %d", AnsLength.top());
             AnsLength.pop();
         }                  
     }
@@ -195,7 +196,7 @@ MGraph BuildMGraph(){
     Edge E = new ENode;
     int OneWay;
     for( int i = 0; i < M; i++ ){
-        cin >> E->V1 >> E->V2 >> OneWay >> E->Weight.Length>> E->Weight.Time;
+        scanf( "%d %d %d %d %d", &(E->V1), &(E->V2), &OneWay, &(E->Weight.Length), &(E->Weight.Time));
         Graph->G[ E->V1 ][E->V2 ] = E->Weight;
         if( OneWay == 0 )   Graph->G[ E->V2 ][E->V1 ] = E->Weight;
     }
