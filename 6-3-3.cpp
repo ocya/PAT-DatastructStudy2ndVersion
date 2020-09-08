@@ -1,5 +1,4 @@
 //最后一个测试点未通过
-//最后一个测试点未通过
 //应该是超时了
 #include <iostream>
 #include <vector>
@@ -151,8 +150,7 @@ void DijkstraLength( MGraph Graph, Vertex S ){
     for( V = 0; V < Graph->Nv; V++ ){
         Cost[V] = Graph->G[S][V];
         if( Graph->G[S][V].Length != Infinity )
-            LengthPath[V] = S; 
-            NodeCount[V] = NodeCount[S] + 1;      
+            LengthPath[V] = S;     
     }
     Cost[S].Length = 0;
     isCollected[S] = true;
