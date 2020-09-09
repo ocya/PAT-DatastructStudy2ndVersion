@@ -1,4 +1,3 @@
-// 最后一个测试点未通过
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -38,7 +37,6 @@ struct GNode{
 
 LGraph BuildLGraph();
 WeightType TopSort( LGraph Graph);
-vector<Vertex> Dest;
 
 int main( int argc, const char *argv[] ){
 
@@ -73,14 +71,17 @@ WeightType TopSort( LGraph Graph){
             Q.push( V );
 
     WeightType EarliestFinishTime = 0;
+    Vertex TheLastVertex;
     while( !Q.empty() ){
         V = Q.front(); Q.pop();
         TopOrder.push( V );
-        if( Graph->G[V].FirstEdge == nullptr ) Dest.push_back( V );
         for( W = Graph->G[V].FirstEdge; W; W = W->Next ){
             if( Graph->G[W->AdjV].Earliest < Graph->G[V].Earliest + W->Weight ){
                 Graph->G[W->AdjV].Earliest = Graph->G[V].Earliest + W->Weight;
-                if( EarliestFinishTime < Graph->G[W->AdjV].Earliest ) EarliestFinishTime = Graph->G[W->AdjV].Earliest;
+                if( EarliestFinishTime < Graph->G[W->AdjV].Earliest ){
+                    EarliestFinishTime = Graph->G[W->AdjV].Earliest;
+                    TheLastVertex = W->AdjV;
+                } 
             }
             if( --InDegree[ W->AdjV ] == 0 ){
                 Q.push( W->AdjV );
@@ -89,10 +90,7 @@ WeightType TopSort( LGraph Graph){
     }
     if( TopOrder.size() != Graph->Nv ) return -1;
 
-    for( int i = 0; i < Dest.size(); i++ ){
-        V = TopOrder.top(); TopOrder.pop();
-        Graph->G[V].Latest = EarliestFinishTime;
-    }
+    Graph->G[TheLastVertex].Latest = EarliestFinishTime;
 
     while( !TopOrder.empty() ){
         V = TopOrder.top(); TopOrder.pop(); 
